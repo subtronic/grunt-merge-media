@@ -52,11 +52,13 @@ grunt.initConfig({
       compress: true
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'styles/css': ['styles/base.css', 'styles/layout/*.css'],
     },
   }
 });
 ```
+
+If the file destination is a folder, the stylesheet will be created in that folder with the same name as the original. Otherwise, it will be created in the exact path specified.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
