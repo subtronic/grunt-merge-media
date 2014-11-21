@@ -1,0 +1,20 @@
+body {
+  background: #000;
+}
+
+body h1 {
+  color: #ddd;
+}
+
+body p {
+  color: #ccc;
+}
+@media only screen and(max-width: 640px) {
+  body {
+    background: #ccc;
+  }
+
+  body h1 {
+    background: #ccc;
+  }
+}
