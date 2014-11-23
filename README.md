@@ -1,6 +1,6 @@
 # grunt-merge-media
 
-> Merge duplicate media queries
+> Merges duplicate media queries into one rule, appended to the bottom of your stylesheet. This allows you to write your media queries "inline" but still combine them into one rule to avoid code duplication.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
