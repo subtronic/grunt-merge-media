@@ -40,8 +40,6 @@ module.exports = function(grunt) {
         var fileDest = file.dest;
         var output = '';
 
-        grunt.log.writeln(fileExt);
-
         if (fileDest.indexOf(fileExt) === -1) {
           fileDest = path.join(fileDest, fileName);
         }
