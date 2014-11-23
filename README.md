@@ -24,14 +24,14 @@ In your project's Gruntfile, add a section named `merge_media` to the data objec
 
 ```js
 grunt.initConfig({
-  merge_media: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+	merge_media: {
+		options: {
+			// Task-specific options go here.
+		},
+		your_target: {
+			// Target-specific file lists and/or options go here.
+		},
+	},
 });
 ```
 
@@ -47,14 +47,14 @@ A Boolean value that will switch the compression of the processed file. This is 
 
 ```js
 grunt.initConfig({
-  merge_media: {
-    options: {
-      compress: true
-    },
-    files: {
-      'styles/css': ['styles/base.css', 'styles/layout/*.css'],
-    },
-  }
+	merge_media: {
+		options: {
+			compress: true
+		},
+		files: {
+			'styles/css': ['styles/base.css', 'styles/layout/*.css'],
+		},
+	}
 });
 ```
 
@@ -64,4 +64,4 @@ If the file destination is a folder, the stylesheet will be created in that fold
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+* 2014-11-21	v0.2.3	Initial release
