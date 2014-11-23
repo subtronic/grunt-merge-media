@@ -40,6 +40,9 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "media queries",
+    "merge media queries",
+    "combine media queries"
   ]
 }
