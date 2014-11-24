@@ -1,7 +1,7 @@
 {
   "name": "grunt-merge-media",
   "description": "Merge duplicate media queries",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "homepage": "https://github.com/migstopheles/grunt-merge-media",
   "author": {
     "name": "Mike Cook",
