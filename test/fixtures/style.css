@@ -27,3 +27,27 @@ body {
 			background: #666;
 		}
 	}
+
+	@media only screen and(min-width: 640px) {
+		body p {
+			background: #666;
+		}
+
+		@media only screen and(max-width: 920px) {
+			body p {
+				background: #ccc;
+			}
+		}
+
+		@media only screen and(max-width: 1024px) {
+			body h1 {
+				color: #0c0;
+			}
+		}
+
+		@media only screen and(max-width: 920px) {
+			body h1 {
+				color: #c00;
+			}
+		}
+	}

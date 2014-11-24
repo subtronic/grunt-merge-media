@@ -25,17 +25,51 @@ module.exports = function(grunt) {
 			logFile: false
 		});
 
-		function addToLog(msg) {
+		var logOutput = [];
+
+		function addToLog(msg, level) {
 			if(options.logFile) {
+				var indent = new Array((level || 0)).join('> ');
+				var output = '';
 				if(_.isString(msg)) {
-					logOutput.push(msg);
+					output = msg;
 				} else if (_.isFunction(msg)) {
-					logOutput.push(msg());
+					output = msg();
+				}
+				if(output != '') {
+					logOutput.push(indent + output);
 				}
 			}
 		}
 
-		var logOutput = [];
+		function mergeMedia(rules, level) {
+
+			level = level || 1;
+
+			var queries = _.filter(rules, { type: 'media' });
+			var rules = _.difference(rules, queries);
+			var grouped = _.groupBy(queries, function(rule) { return rule.media; });
+
+			if(queries.length) {
+				addToLog('Found ' + queries.length + ' media queries from ' + (queries.length + rules.length) + ' rules', level);
+			}
+
+			var merged = _.map(grouped, function(group, name) {
+
+				addToLog('`' + name + '` x' + group.length, level);
+
+				var groupRules = _.flatten(_.pluck(group, 'rules'), true);
+				var subQueries = mergeMedia(groupRules, level + 1);
+
+				return {
+					type: group[0].type,
+					media: group[0].media,
+					rules: subQueries
+				};
+			});
+
+			return rules.concat(merged);
+		}
 
 		// Iterate over all specified file groups.
 		this.files.forEach(function(file) {
@@ -48,8 +82,7 @@ module.exports = function(grunt) {
 				}
 			}).forEach(function (filePath) {
 
-				addToLog('===========');
-				addToLog('# Merging queries in ' + filePath);
+				addToLog('---\n# Merging queries in ' + filePath);
 
 				var fileName = filePath.replace(/(.*)\//gi, '');
 				var fileExt = '.' + fileName.replace(/(.*)\./gi, '');
@@ -63,39 +96,11 @@ module.exports = function(grunt) {
 				var source = grunt.file.read(filePath);
 				var parsedCss = css.parse(source);
 
-				var queries = _.filter(parsedCss.stylesheet.rules, { type: 'media' });
-				var rules = _.difference(parsedCss.stylesheet.rules, queries);
-				var grouped = _.groupBy(queries, function(rule) { return rule.media; });
-
-				var merged = _.map(grouped, function(group) {
-					return {
-						type: group[0].type,
-						media: group[0].media,
-						rules: _.flatten(_.pluck(group, 'rules'), true)
-					};
-				});
-
-				addToLog('Found ' + queries.length + ' media queries from ' + (queries.length + rules.length) + ' rules');
-				addToLog('## Merge results');
-				addToLog(function() {
-					var out = [];
-					_.forEach(grouped, function(value, key) {
-						out.push('* `' + key + '` x' + value.length);
-					});
-					return out.join('\n');
-				});
+				var mergedMedia = mergeMedia(parsedCss.stylesheet.rules);
 
 				output += css.stringify({
 					stylesheet: {
-						rules: rules
-					}
-				}, options);
-
-				output += '\n';
-
-				output += css.stringify({
-					stylesheet: {
-						rules: merged
+						rules: mergedMedia
 					}
 				}, options);
 
