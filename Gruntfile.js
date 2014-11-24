@@ -39,7 +39,8 @@ module.exports = function(grunt) {
       },
       custom_options: {
         options: {
-          compress: true
+          compress: true,
+          logFile: true
         },
         files: {
           'tmp/custom_options.css': ['test/fixtures/style.css']

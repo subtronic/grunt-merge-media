@@ -21,3 +21,9 @@ body {
 	body p {
 		color: #ccc;
 	}
+
+	@media only screen and(max-width: 1024px) {
+		body p {
+			background: #666;
+		}
+	}
