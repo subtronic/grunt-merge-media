@@ -43,13 +43,20 @@ Default value: `false`
 
 A Boolean value that will switch the compression of the processed file. This is passed straight into the `stringify` method in [css](https://github.com/reworkcss/css).
 
+#### options.logFile
+Type: `Boolean`
+Default value: `false`
+
+When set to `true`, a log file with details of the merge will be created in the working directory.
+
 ### Usage Examples
 
 ```js
 grunt.initConfig({
 	merge_media: {
 		options: {
-			compress: true
+			compress: true,
+			logFile: true
 		},
 		files: {
 			'styles/css': ['styles/base.css', 'styles/layout/*.css'],
