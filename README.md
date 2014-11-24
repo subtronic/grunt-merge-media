@@ -71,5 +71,6 @@ If the file destination is a folder, the stylesheet will be created in that fold
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 2014-11-21	v0.4.0	Adds support for nested media queries
 * 2014-11-21	v0.3.0	Adds log file
 * 2014-11-21	v0.2.3	Initial release
