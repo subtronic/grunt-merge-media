@@ -59,7 +59,7 @@ grunt.initConfig({
 			logFile: true
 		},
 		files: {
-			'styles/css': ['styles/base.css', 'styles/layout/*.css'],
+			{'src': 'styles/base.css', 'dest' : 'build/css/base.min.css'}
 		},
 	}
 });
